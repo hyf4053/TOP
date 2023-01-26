@@ -601,6 +601,70 @@
             </Actions>
             <Condition Enabled="false" Grouping="Or" />
           </Trigger>
+          <Trigger Enabled="true" Source="FFXIVNetwork" Name="投盾男人位置" Id="05157992-4a2e-41eb-8ee1-950e6e9e23cf" RegularExpression="^(?&lt;type&gt;20)\|(?&lt;timestamp&gt;[^|]*)\|(?&lt;sourceId&gt;[^|]*)\|(?&lt;source&gt;[^|]*)\|(7B27)\|(?&lt;ability&gt;[^|]*)\|(?&lt;targetId&gt;[^|]*)\|(?&lt;target&gt;[^|]*)\|(?&lt;castTime&gt;[^|]*)\|(?&lt;x&gt;[^|]*)\|(?&lt;y&gt;[^|]*)\|(?&lt;z&gt;[^|]*)\|(?&lt;heading&gt;[^|]*)\|">
+            <Actions>
+              <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="Rotation" VariableExpression="${heading}*57.3" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" UseTTSTextExpression="AAA" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="0-${Rotation}" ExpressionTypeL="Numeric" ExpressionR="0.5" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${Rotation}-0" ExpressionTypeL="Numeric" ExpressionR="-0.5" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" UseTTSTextExpression="BBB" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${Rotation}+90" ExpressionTypeL="Numeric" ExpressionR="0.5" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="4" UseTTSTextExpression="CCC" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="180-${Rotation}" ExpressionTypeL="Numeric" ExpressionR="0.5" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${Rotation}-180" ExpressionTypeL="Numeric" ExpressionR="-0.5" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="5" UseTTSTextExpression="DDD" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="90-${Rotation}" ExpressionTypeL="Numeric" ExpressionR="0.5" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${Rotation}-90" ExpressionTypeL="Numeric" ExpressionR="-0.5" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="6" UseTTSTextExpression="4 4 4" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${Rotation}" ExpressionTypeL="Numeric" ExpressionR="5" ExpressionTypeR="String" ConditionType="NumericGreater" />
+                  <ConditionSingle Enabled="true" ExpressionL="${Rotation}" ExpressionTypeL="Numeric" ExpressionR="90" ExpressionTypeR="String" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="7" UseTTSTextExpression="1 1 1" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${Rotation}" ExpressionTypeL="Numeric" ExpressionR="-90" ExpressionTypeR="String" ConditionType="NumericGreater" />
+                  <ConditionSingle Enabled="true" ExpressionL="${Rotation}" ExpressionTypeL="Numeric" ExpressionR="-5" ExpressionTypeR="String" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="8" UseTTSTextExpression="2 2 2" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${Rotation}" ExpressionTypeL="Numeric" ExpressionR="-175" ExpressionTypeR="String" ConditionType="NumericGreater" />
+                  <ConditionSingle Enabled="true" ExpressionL="${Rotation}" ExpressionTypeL="Numeric" ExpressionR="-90" ExpressionTypeR="String" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="9" UseTTSTextExpression="3 3 3" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${Rotation}" ExpressionTypeL="Numeric" ExpressionR="90" ExpressionTypeR="String" ConditionType="NumericGreater" />
+                  <ConditionSingle Enabled="true" ExpressionL="${Rotation}" ExpressionTypeL="Numeric" ExpressionR="175" ExpressionTypeR="String" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="10" VariableOp="SetNumeric" VariableName="Test" VariableExpression="1" Enabled="False" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="11" Enabled="False" ActionType="SystemBeep">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${Test}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+            <Conditions />
+          </Trigger>
         </Triggers>
       </Folder>
       <Folder Id="68789366-4556-45ff-833a-52de3520e231" Name="测试" Enabled="false">
