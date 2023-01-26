@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <TriggernometryExport Version="1">
-  <ExportedFolder Id="0ab8298d-60bb-44f6-9f2e-20fa1ce11675" Name="绝欧米茄(TOP)" Enabled="true">
+  <ExportedFolder Id="0ab8298d-60bb-44f6-9f2e-20fa1ce11675" Name="绝欧米茄(TOP) by 懒猫咪" Enabled="true">
     <Folders>
       <Folder Id="b54c4999-2d87-4f34-ad8c-ca83762710b6" Name="P1" Enabled="false">
         <Folders />
@@ -51,8 +51,178 @@
           <Folder Id="36731936-16ce-490f-9870-b34b38fe5e14" Name="自动标点" Enabled="true">
             <Folders />
             <Triggers>
-              <Trigger Enabled="true" Name="Mark 1" Id="7ffa8084-6c0c-4d09-afb3-85348e322a13" RegularExpression="">
-                <Actions />
+              <Trigger Enabled="true" Name="Attack 1" Id="7ffa8084-6c0c-4d09-afb3-85348e322a13" RegularExpression="">
+                <Actions>
+                  <Action OrderNumber="1" NamedCallbackName="command" NamedCallbackParam="/mk attack1 &lt;me&gt;" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Name="Attack 2" Id="c28147de-a55c-4147-bec0-d493f3f7e0e1" RegularExpression="">
+                <Actions>
+                  <Action OrderNumber="1" NamedCallbackName="command" NamedCallbackParam="/mk attack2 &lt;me&gt;" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Name="Attack 3" Id="66676f80-14f5-435b-bcdb-3886074d768d" RegularExpression="">
+                <Actions>
+                  <Action OrderNumber="1" NamedCallbackName="command" NamedCallbackParam="/mk attack3 &lt;me&gt;" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Name="Attack 4" Id="1b68da74-49c0-4a95-933c-b7928ebd0542" RegularExpression="">
+                <Actions>
+                  <Action OrderNumber="1" NamedCallbackName="command" NamedCallbackParam="/mk attack4 &lt;me&gt;" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Name="Bind" Id="8eaa482a-3a1c-42a2-b894-2a7bacb7a0a3" RegularExpression="MarkingStackTarget\|(?&lt;name&gt;[^|]*)">
+                <Actions>
+                  <Action OrderNumber="1" NamedCallbackName="command" NamedCallbackParam="/mk bind &lt;${_ffxivparty[${name}].order}&gt;" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" ListVariableOp="Remove" ListVariableName="UnmarkedList" ListVariableIndex="${_ffxivparty[${name}].order}" ActionType="ListVariable">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="3" UseTTSTextExpression="${_ffxivparty[${name}].order}" Enabled="False" ActionType="UseTTS">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="4" UseTTSTextExpression="${_ffxivparty[${name}].order}" Enabled="False" ActionType="UseTTS">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Name="Bind 2" Id="fc4f209f-5299-43cb-b618-979293764953" RegularExpression="">
+                <Actions>
+                  <Action OrderNumber="1" NamedCallbackName="command" NamedCallbackParam="/mk bind2 &lt;me&gt;" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Name="Stop" Id="9bdd34a9-f62d-4639-9068-d49e45e0d312" RegularExpression="MarkingNoBuffTarget">
+                <Actions>
+                  <Action OrderNumber="1" ListVariableOp="Copy" ListVariableName="PartyIDList" ListVariableTarget="UnmarkedList" UseTTSTextExpression="无标记玩家" Enabled="False" ActionType="ListVariable" Description="当条件变成6的时候表示所有的玩家都被标记完成，此时可以开始对列表里面的内容，搜索剩余玩家并依次给予标记">
+                    <Condition Enabled="false" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${lvar:MarkedList.size}" ExpressionTypeL="Numeric" ExpressionR="6" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" ListVariableOp="Remove" ListVariableName="UnmarkedList" ListVariableIndex="${lvar:MarkedList[1]}" NamedCallbackName="command" NamedCallbackParam="/mk ignore &lt;${_ffxivparty[${lvar:UnmarkedList[1]}].order}&gt;" UseTTSTextExpression="找到目标" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or">
+                      <ConditionSingle Enabled="false" ExpressionL="MarkedList" ExpressionTypeL="String" ExpressionR="${lvar:UnmarkedList[1]}" ExpressionTypeR="String" ConditionType="ListDoesNotContain" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="3" ListVariableOp="Remove" ListVariableName="UnmarkedList" ListVariableIndex="${lvar:MarkedList[1]}" NamedCallbackName="command" NamedCallbackParam="/mk ignore &lt;${_ffxivparty[${lvar:UnmarkedList[2]}].order}&gt;" UseTTSTextExpression="找到目标" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or">
+                      <ConditionSingle Enabled="false" ExpressionL="MarkedList" ExpressionTypeL="String" ExpressionR="${lvar:UnmarkedList[1]}" ExpressionTypeR="String" ConditionType="ListDoesNotContain" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="4" ListVariableOp="Remove" ListVariableName="UnmarkedList" ListVariableIndex="${lvar:MarkedList[1]}" NamedCallbackName="command" NamedCallbackParam="/mk ignore &lt;${lvar:UnmarkedList[1]}&gt;" UseTTSTextExpression="找到目标" Enabled="False" ActionType="NamedCallback">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="MarkedList" ExpressionTypeL="String" ExpressionR="${lvar:UnmarkedList[1]}" ExpressionTypeR="String" ConditionType="ListDoesNotContain" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="5" ListVariableOp="Remove" ListVariableName="UnmarkedList" ListVariableIndex="${lvar:MarkedList[1]}" NamedCallbackName="command" NamedCallbackParam="/mk ignore &lt;${lvar:UnmarkedList[1]}&gt;" UseTTSTextExpression="找到目标" Enabled="False" ActionType="NamedCallback">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="MarkedList" ExpressionTypeL="String" ExpressionR="${lvar:UnmarkedList[1]}" ExpressionTypeR="String" ConditionType="ListDoesNotContain" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="6" ListVariableOp="Remove" ListVariableName="UnmarkedList" ListVariableIndex="${lvar:MarkedList[1]}" NamedCallbackName="command" NamedCallbackParam="/mk ignore &lt;${lvar:UnmarkedList[2]}&gt;" UseTTSTextExpression="找到目标" Enabled="False" ActionType="NamedCallback">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="MarkedList" ExpressionTypeL="String" ExpressionR="${lvar:UnmarkedList[2]}" ExpressionTypeR="String" ConditionType="ListDoesNotContain" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="7" ListVariableOp="Remove" ListVariableName="UnmarkedList" ListVariableIndex="${lvar:MarkedList[1]}" NamedCallbackName="command" NamedCallbackParam="/mk ignore &lt;${lvar:UnmarkedList[3]}&gt;" UseTTSTextExpression="找到目标" Enabled="False" ActionType="NamedCallback">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="MarkedList" ExpressionTypeL="String" ExpressionR="${lvar:UnmarkedList[3]}" ExpressionTypeR="String" ConditionType="ListDoesNotContain" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="8" ListVariableOp="Remove" ListVariableName="UnmarkedList" ListVariableIndex="${lvar:MarkedList[1]}" NamedCallbackName="command" NamedCallbackParam="/mk ignore &lt;${lvar:UnmarkedList[4]}&gt;" UseTTSTextExpression="找到目标" Enabled="False" ActionType="NamedCallback">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="MarkedList" ExpressionTypeL="String" ExpressionR="${lvar:UnmarkedList[4]}" ExpressionTypeR="String" ConditionType="ListDoesNotContain" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="9" ListVariableOp="Remove" ListVariableName="UnmarkedList" ListVariableIndex="${lvar:MarkedList[1]}" NamedCallbackName="command" NamedCallbackParam="/mk ignore &lt;${lvar:UnmarkedList[5]}&gt;" UseTTSTextExpression="找到目标" Enabled="False" ActionType="NamedCallback">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="MarkedList" ExpressionTypeL="String" ExpressionR="${lvar:UnmarkedList[5]}" ExpressionTypeR="String" ConditionType="ListDoesNotContain" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="10" ListVariableOp="Remove" ListVariableName="UnmarkedList" ListVariableIndex="${lvar:MarkedList[1]}" NamedCallbackName="command" NamedCallbackParam="/mk ignore &lt;${lvar:UnmarkedList[6]}&gt;" UseTTSTextExpression="找到目标" Enabled="False" ActionType="NamedCallback">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="MarkedList" ExpressionTypeL="String" ExpressionR="${lvar:UnmarkedList[6]}" ExpressionTypeR="String" ConditionType="ListDoesNotContain" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="11" Enabled="False" ActionType="SystemBeep">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="UnmarkedList" ExpressionTypeL="String" ExpressionR="${lvar:MarkedList[1]}" ExpressionTypeR="String" ConditionType="ListDoesNotContain" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="12" UseTTSTextExpression="${_ffxivplayer}" Enabled="False" ActionType="UseTTS">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Name="Stop 2" Id="6da490aa-8ce1-4451-9a1d-fa505c4b3021" RegularExpression="">
+                <Actions>
+                  <Action OrderNumber="1" NamedCallbackName="command" NamedCallbackParam="/mk ignore2 &lt;me&gt;" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Name="ClearAll" Id="3fd42c5c-3ef2-4fed-9437-6aa16f4469a4" RegularExpression="">
+                <Actions>
+                  <Action OrderNumber="1" NamedCallbackName="command" NamedCallbackParam="/mk attack1 &lt;attack1&gt;" Enabled="False" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" NamedCallbackName="command" NamedCallbackParam="/mk attack2 &lt;attack2&gt;" Enabled="False" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="3" NamedCallbackName="command" NamedCallbackParam="/mk attack3 &lt;attack3&gt;" Enabled="False" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="4" NamedCallbackName="command" NamedCallbackParam="/mk attack4 &lt;attack4&gt;" Enabled="False" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="5" NamedCallbackName="command" NamedCallbackParam="/mk bind1 &lt;bind1&gt;" Enabled="False" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="6" NamedCallbackName="command" NamedCallbackParam="/mk bind2 &lt;bind2&gt;" Enabled="False" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="7" NamedCallbackName="command" NamedCallbackParam="/mk ingore1 &lt;stop&gt;" Enabled="False" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="8" NamedCallbackName="command" NamedCallbackParam="/mk ingore2 &lt;stop&gt;" Enabled="False" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="9" NamedCallbackName="command" NamedCallbackParam="/mk clear &lt;me&gt;" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Name="Attack" Id="da39ad79-5a1d-4d6b-85cc-ed230506235f" RegularExpression="MarkingSpreadTarget\|(?&lt;name&gt;[^|]*)">
+                <Actions>
+                  <Action OrderNumber="1" NamedCallbackName="command" NamedCallbackParam="/mk attack &lt;${_ffxivparty[${name}].order}&gt;" ActionType="NamedCallback">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" ListVariableOp="Remove" ListVariableName="UnmarkedList" ListVariableIndex="${_ffxivparty[${name}].order}" ActionType="ListVariable">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="3" ListVariableOp="Remove" ListVariableName="UnmarkedList" ListVariableIndex="${lvar:UnmarkedList.indexof(${name})}" Enabled="False" ActionType="ListVariable">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
                 <Condition Enabled="false" Grouping="Or" />
               </Trigger>
             </Triggers>
@@ -71,7 +241,7 @@
             </Actions>
             <Condition Enabled="false" Grouping="Or" />
           </Trigger>
-          <Trigger Enabled="true" Source="FFXIVNetwork" Name="初始化请在初始化中确定队伍名称" Id="4d77d5b4-a2b1-4f5f-9bdb-ef9fc0464528" RegularExpression="初始化">
+          <Trigger Enabled="false" Source="FFXIVNetwork" Name="初始化请在初始化中确定队伍名称" Id="4d77d5b4-a2b1-4f5f-9bdb-ef9fc0464528" RegularExpression="初始化">
             <Actions>
               <Action OrderNumber="1" VariableOp="SetString" VariableName="MT" ActionType="Variable">
                 <Condition Enabled="false" Grouping="Or" />
@@ -108,6 +278,12 @@
               <Action OrderNumber="2" TriggerId="45dd2563-fb49-46a6-add4-085e71797b5e" TriggerForce="regexp,conditions" ActionType="Trigger">
                 <Condition Enabled="false" Grouping="Or" />
               </Action>
+              <Action OrderNumber="3" TriggerId="6acea48a-3e14-43b2-9997-1baef126fcf4" TriggerForce="regexp,conditions" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="4" TriggerId="ecb499b6-5fc6-4d5e-82ec-35403eb8b855" TriggerForce="regexp,conditions" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
             </Actions>
             <Condition Enabled="false" Grouping="Or" />
           </Trigger>
@@ -116,7 +292,13 @@
               <Action OrderNumber="1" TriggerId="69b987df-dd75-44c8-a300-9e8136f76a8c" TriggerForce="regexp,conditions" ActionType="Trigger">
                 <Condition Enabled="false" Grouping="Or" />
               </Action>
-              <Action OrderNumber="2" TriggerId="45dd2563-fb49-46a6-add4-085e71797b5e" TriggerForce="regexp,conditions" ActionType="Trigger">
+              <Action OrderNumber="2" TriggerId="ecb499b6-5fc6-4d5e-82ec-35403eb8b855" TriggerForce="regexp,conditions" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="3" TriggerId="6acea48a-3e14-43b2-9997-1baef126fcf4" TriggerForce="regexp,conditions" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="4" TriggerId="45dd2563-fb49-46a6-add4-085e71797b5e" TriggerForce="regexp,conditions" ActionType="Trigger">
                 <Condition Enabled="false" Grouping="Or" />
               </Action>
             </Actions>
@@ -136,124 +318,170 @@
             </Actions>
             <Condition Enabled="false" Grouping="Or" />
           </Trigger>
+          <Trigger Enabled="true" Name="P2.5点名变量初始化" Id="6acea48a-3e14-43b2-9997-1baef126fcf4" RegularExpression="" Description="SelfBuff记录的是自己点名是分摊1还是分散0">
+            <Actions>
+              <Action OrderNumber="1" ListVariableOp="Copy" ListVariableName="PartyIDList" ListVariableTarget="UnmarkedList" UseTTSTextExpression="无标记玩家" ActionType="ListVariable" Description="当条件变成6的时候表示所有的玩家都被标记完成，此时可以开始对列表里面的内容，搜索剩余玩家并依次给予标记">
+                <Condition Enabled="false" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:MarkedList.size}" ExpressionTypeL="Numeric" ExpressionR="6" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" ListVariableName="StackList" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="3" ListVariableName="SpreadList" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="4" VariableName="SelfBuff" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="5" VariableName="StackNum" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="6" VariableName="SpeardNum" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="7" ListVariableName="MarkedList" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
         </Triggers>
       </Folder>
       <Folder Id="cde70fbc-d746-45cc-b55b-63810e367e67" Name="P2" Enabled="true">
         <Folders>
-          <Folder Id="02c02a79-9010-4b88-82fb-0d278a6d0698" Name="靠近远离" Enabled="true">
+          <Folder Id="d9568fe2-b4c9-48e7-af50-5e0c3d716ca0" Name="一运变身（从莫灵喵整合，还是有bug，概率出错建议自己看）" Enabled="false">
             <Folders />
             <Triggers>
-              <Trigger Enabled="true" Name="靠近Buff" Id="f06a6ab4-ca58-43f1-b957-c2b85730f543" RegularExpression="(?&lt;timestamp&gt;^.{14}) StatusAdd (?&lt;type&gt;1A):D63:(?&lt;effect&gt;(?:[^:]|: )*?):(?&lt;duration&gt;[^:]*):(?&lt;sourceId&gt;[^:]*):(?&lt;source&gt;[^:]*):(?&lt;targetId&gt;[^:]*):(?&lt;target&gt;[^:]*):(?&lt;count&gt;[^:]*):(?&lt;targetMaxHp&gt;[^:]*):(?&lt;sourceMaxHp&gt;[^:]*)(?:$|:)">
+              <Trigger Enabled="true" Name="变身设置变量" Id="9991d9d3-c507-4e85-86e9-261e14c93a3f" RegularExpression="^.{14} (?:\w+ )00:0:106:.{8}:(?&lt;type&gt;[^:]*):0031:.{4}:.{8}:" PeriodRefire="Deny" RefirePeriodExpression="5000">
+                <Actions>
+                  <Action OrderNumber="1" OBSEndPoint="" VariableOp="SetString" VariableName="M变身" VariableExpression="1" ActionType="Variable">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="オメガM" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="Omega-M" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" OBSEndPoint="" VariableOp="SetString" VariableName="F变身" VariableExpression="1" ActionType="Variable">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="オメガF" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="Omega-F" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Name="提示播报" Id="14d99270-55f7-4289-851a-c1bae285b94d" RegularExpression="^.{14} (?:\w+ )03:.{8}:[^:]*:00:5A:.{4}:00::7634">
+                <Actions>
+                  <Action OrderNumber="1" OBSEndPoint="" PlaySpeechMyself="True" UseTTSTextExpression="远离男女" UseTTSRateExpression="2" ActionType="UseTTS" ExecutionDelayExpression="10000">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:M变身}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${var:F变身}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" LogMessageText="AT_Subtitle:钢铁十字，远离男女:10:200:-420:TC:" LogProcess="True" PlaySpeechMyself="True" UseTTSTextExpression="${func:substring(${numeric:${var:safe_zone}*5},5):A右A右 逼上逼上 逼下逼下 C右C右 C左C左 低下低下 低上低上 A左A左 }" UseTTSRateExpression="2" ActionType="LogMessage" RefireRequeue="False">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:M变身}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${var:F变身}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="3" OBSEndPoint="" PlaySpeechMyself="True" UseTTSTextExpression="靠近男的" UseTTSRateExpression="2" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:M变身}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${var:F变身}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="4" LogMessageText="AT_Subtitle:月环辣翅，靠近男的:10:200:-420:TC:" LogProcess="True" PlaySpeechMyself="True" UseTTSTextExpression="${func:substring(${numeric:${var:safe_zone}*5},5):A右A右 逼上逼上 逼下逼下 C右C右 C左C左 低下低下 低上低上 A左A左 }" UseTTSRateExpression="2" ActionType="LogMessage" RefireRequeue="False">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:M变身}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${var:F变身}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="5" OBSEndPoint="" PlaySpeechMyself="True" UseTTSTextExpression="靠近女的" UseTTSRateExpression="2" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:M变身}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${var:F变身}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="6" LogMessageText="AT_Subtitle:钢铁辣翅，靠近女的:10:200:-420:TC:" LogProcess="True" PlaySpeechMyself="True" UseTTSTextExpression="${func:substring(${numeric:${var:safe_zone}*5},5):A右A右 逼上逼上 逼下逼下 C右C右 C左C左 低下低下 低上低上 A左A左 }" UseTTSRateExpression="2" ActionType="LogMessage" RefireRequeue="False">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:M变身}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${var:F变身}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="7" OBSEndPoint="" PlaySpeechMyself="True" UseTTSTextExpression="男得两鞭" UseTTSRateExpression="2" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:M变身}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${var:F变身}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="8" LogMessageText="AT_Subtitle:月环十字，男的两边:10:200:-420:TC:" LogProcess="True" PlaySpeechMyself="True" UseTTSTextExpression="${func:substring(${numeric:${var:safe_zone}*5},5):A右A右 逼上逼上 逼下逼下 C右C右 C左C左 低下低下 低上低上 A左A左 }" UseTTSRateExpression="2" ActionType="LogMessage" RefireRequeue="False">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:M变身}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${var:F变身}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Name="团灭初始化" Id="503bd43d-b7ef-4a3d-9f44-ab7db892fb8f" RegularExpression="^.{14} (?:\w+ )21:.{8}:400000(03|1[026]|05)|任务结束了。|has ended\.|の攻略を終了した。" PeriodRefire="Deny" RefirePeriodExpression="2000">
+                <Actions>
+                  <Action OrderNumber="1" OBSEndPoint="" VariableOp="UnsetRegex" VariableName="(M|F)变身" VariableExpression="1" ActionType="Variable">
+                    <Condition Enabled="false" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="オメガM" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      <ConditionSingle Enabled="true" ExpressionL="${type}" ExpressionTypeL="String" ExpressionR="Omega-M" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+            </Triggers>
+          </Folder>
+          <Folder Id="f98fcf75-31a7-4675-8fc4-45b6f1dc7afb" Name="靠近远离" Enabled="true">
+            <Folders />
+            <Triggers>
+              <Trigger Enabled="true" Name="靠近Buff" Id="30047daa-26d3-4563-83bb-e75ba23e8d60" RegularExpression="(?&lt;timestamp&gt;^.{14}) StatusAdd (?&lt;type&gt;1A):D63:(?&lt;effect&gt;(?:[^:]|: )*?):(?&lt;duration&gt;[^:]*):(?&lt;sourceId&gt;[^:]*):(?&lt;source&gt;[^:]*):(?&lt;targetId&gt;[^:]*):(?&lt;target&gt;[^:]*):(?&lt;count&gt;[^:]*):(?&lt;targetMaxHp&gt;[^:]*):(?&lt;sourceMaxHp&gt;[^:]*)(?:$|:)">
                 <Actions>
                   <Action OrderNumber="1" UseTTSTextExpression="靠近" ActionType="UseTTS">
                     <Condition Enabled="false" Grouping="Or" />
                   </Action>
-                  <Action OrderNumber="2" TriggerId="706948ca-84c8-4e20-997c-069bcea98e20" TriggerForce="regexp,conditions" ActionType="Trigger">
+                  <Action OrderNumber="2" TriggerId="693cf1fd-028f-4c4f-ab76-ac7132579b98" TriggerForce="regexp,conditions" ActionType="Trigger">
                     <Condition Enabled="false" Grouping="Or" />
                   </Action>
                 </Actions>
                 <Condition Enabled="false" Grouping="Or" />
-                <Conditions />
               </Trigger>
-              <Trigger Enabled="true" Name="远离Buff" Id="27afe6bf-c628-43f6-8ec5-2f72f0bef15a" RegularExpression="(?&lt;timestamp&gt;^.{14}) StatusAdd (?&lt;type&gt;1A):D64:(?&lt;effect&gt;(?:[^:]|: )*?):(?&lt;duration&gt;[^:]*):(?&lt;sourceId&gt;[^:]*):(?&lt;source&gt;[^:]*):(?&lt;targetId&gt;[^:]*):(?&lt;target&gt;[^:]*):(?&lt;count&gt;[^:]*):(?&lt;targetMaxHp&gt;[^:]*):(?&lt;sourceMaxHp&gt;[^:]*)(?:$|:)">
+              <Trigger Enabled="true" Name="远离Buff" Id="51b5b160-7438-45b3-9b0a-e34304c30c78" RegularExpression="(?&lt;timestamp&gt;^.{14}) StatusAdd (?&lt;type&gt;1A):D64:(?&lt;effect&gt;(?:[^:]|: )*?):(?&lt;duration&gt;[^:]*):(?&lt;sourceId&gt;[^:]*):(?&lt;source&gt;[^:]*):(?&lt;targetId&gt;[^:]*):(?&lt;target&gt;[^:]*):(?&lt;count&gt;[^:]*):(?&lt;targetMaxHp&gt;[^:]*):(?&lt;sourceMaxHp&gt;[^:]*)(?:$|:)">
                 <Actions>
                   <Action OrderNumber="1" UseTTSTextExpression="远离" ActionType="UseTTS">
                     <Condition Enabled="false" Grouping="Or" />
                   </Action>
+                  <Action OrderNumber="2" OBSEndPoint="" TriggerId="5aa54df1-b301-4037-a593-3cac7ab7015b" TriggerForce="regexp,conditions" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
                 </Actions>
                 <Condition Enabled="false" Grouping="Or" />
-                <Conditions />
               </Trigger>
-              <Trigger Enabled="true" Name="左后击退TTS" Id="706948ca-84c8-4e20-997c-069bcea98e20" RegularExpression="" PrevActionsRefire="Deny">
+              <Trigger Enabled="true" Name="左后击退TTS" Id="693cf1fd-028f-4c4f-ab76-ac7132579b98" RegularExpression="" PrevActionsRefire="Deny">
                 <Actions>
                   <Action OrderNumber="1" PlaySpeechMyself="True" UseTTSTextExpression="左和后击退" ActionType="UseTTS" ExecutionDelayExpression="12000" RefireRequeue="False">
                     <Condition Enabled="false" Grouping="Or" />
                   </Action>
                 </Actions>
                 <Condition Enabled="false" Grouping="Or" />
-                <Conditions />
+              </Trigger>
+              <Trigger Enabled="true" Name="左右击退TTS" Id="5aa54df1-b301-4037-a593-3cac7ab7015b" RegularExpression="" PrevActionsRefire="Deny">
+                <Actions>
+                  <Action OrderNumber="1" PlaySpeechMyself="True" UseTTSTextExpression="左右击退" UseTTSRateExpression="-1" ActionType="UseTTS" ExecutionDelayExpression="12000" RefireRequeue="False">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
               </Trigger>
             </Triggers>
           </Folder>
         </Folders>
         <Triggers>
-          <Trigger Enabled="false" Name="钢铁十字月环辣翅" Id="55f51d3a-c7f1-42fe-a00e-9b5893f7a329" RegularExpression="(?&lt;timestamp&gt;^.{14}) StatusList (?&lt;type&gt;26):(?&lt;targetId&gt;[^:]*):(Omega):(?&lt;jobLevelData&gt;[^:]*):(?&lt;hp&gt;[^:]*):(?&lt;maxHp&gt;[^:]*):(?&lt;mp&gt;[^:]*):(?&lt;maxMp&gt;[^:]*)(?::[^:]*){2}:(?&lt;x&gt;[^:]*):(?&lt;y&gt;[^:]*):(?&lt;z&gt;[^:]*):(?&lt;heading&gt;[^:]*):(?&lt;data0&gt;[^:]*):(?&lt;data1&gt;[^:]*):(?&lt;data2&gt;[^:]*):(?&lt;data3&gt;[^:]*):(?&lt;data4&gt;[^:]*):(E0000000):(?&lt;data6&gt;[^:]*)">
-            <Actions>
-              <Action OrderNumber="0" TriggerId="262d7243-5801-4752-b8b6-39854e16eb84" TriggerForce="regexp,conditions" Enabled="False" ActionType="Trigger">
-                <Condition Enabled="false" Grouping="Or" />
-              </Action>
-              <Action OrderNumber="2" VariableOp="SetNumeric" VariableName="_counter_P2" VariableExpression="${var:_counter_P2}+1" ActionType="Variable">
-                <Condition Enabled="false" Grouping="Or" />
-              </Action>
-              <Action OrderNumber="3" ListVariableOp="Push" ListVariableName="_P2_1_List" ListVariableExpression="辣翅" ActionType="ListVariable">
-                <Condition Enabled="true" Grouping="And">
-                  <ConditionSingle Enabled="true" ExpressionL="${data6}" ExpressionTypeL="String" ExpressionR="04CC" ExpressionTypeR="String" ConditionType="StringEqualCase" />
-                  <ConditionSingle Enabled="true" ExpressionL="${lvar:_P2_1_List.indexof(辣翅)}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
-                </Condition>
-              </Action>
-              <Action OrderNumber="3" ListVariableOp="Push" ListVariableName="_P2_1_List" ListVariableExpression="钢铁" ActionType="ListVariable">
-                <Condition Enabled="true" Grouping="And">
-                  <ConditionSingle Enabled="true" ExpressionL="${data6}" ExpressionTypeL="String" ExpressionR="2804B1" ExpressionTypeR="String" ConditionType="StringEqualCase" />
-                  <ConditionSingle Enabled="true" ExpressionL="${lvar:_P2_1_List.indexof(钢铁)}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
-                </Condition>
-              </Action>
-              <Action OrderNumber="4" ListVariableOp="Push" ListVariableName="_P2_1_List" ListVariableExpression="月环" ActionType="ListVariable">
-                <Condition Enabled="true" Grouping="And">
-                  <ConditionSingle Enabled="true" ExpressionL="${data6}" ExpressionTypeL="String" ExpressionR="0A38" ExpressionTypeR="String" ConditionType="StringEqualCase" />
-                  <ConditionSingle Enabled="true" ExpressionL="${lvar:_P2_1_List.indexof(月环)}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
-                </Condition>
-              </Action>
-              <Action OrderNumber="5" ListVariableOp="Push" ListVariableName="_P2_1_List" ListVariableExpression="十字" ActionType="ListVariable">
-                <Condition Enabled="true" Grouping="And">
-                  <ConditionSingle Enabled="true" ExpressionL="${data6}" ExpressionTypeL="String" ExpressionR="0767" ExpressionTypeR="String" ConditionType="StringEqualCase" />
-                  <ConditionSingle Enabled="true" ExpressionL="${lvar:_P2_1_List.indexof(十字)}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
-                </Condition>
-              </Action>
-              <Action OrderNumber="6" UseTTSTextExpression="${lvar:_P2_1_List[1]}  ${lvar:_P2_1_List[2]}" ActionType="UseTTS">
-                <Condition Enabled="true" Grouping="Or">
-                  <ConditionSingle Enabled="true" ExpressionL="${lvar:_P2_1_List.size}" ExpressionTypeL="Numeric" ExpressionR="2" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
-                  <ConditionSingle Enabled="false" ExpressionL="${_P2_1}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
-                </Condition>
-              </Action>
-              <Action OrderNumber="7" UseTTSTextExpression="${lvar:_P2_1_List[1]}  ${lvar:_P2_1_List[2]}" TriggerId="433acd76-1943-4bab-9cc2-d00d1ec81b69" TriggerForce="regexp,conditions" ActionType="Trigger">
-                <Condition Enabled="true" Grouping="Or">
-                  <ConditionSingle Enabled="true" ExpressionL="${lvar:_P2_1_List.size}" ExpressionTypeL="Numeric" ExpressionR="2" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
-                </Condition>
-              </Action>
-              <Action OrderNumber="8" UseTTSTextExpression="十字" Enabled="False" ActionType="UseTTS">
-                <Condition Enabled="true" Grouping="And">
-                  <ConditionSingle Enabled="true" ExpressionL="${data6}" ExpressionTypeL="String" ExpressionR="0767" ExpressionTypeR="String" ConditionType="StringEqualCase" />
-                  <ConditionSingle Enabled="true" ExpressionL="${lvar:_P2_1_List.size}" ExpressionTypeL="Numeric" ExpressionR="2" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
-                </Condition>
-              </Action>
-              <Action OrderNumber="9" UseTTSTextExpression="辣翅" Enabled="False" ActionType="UseTTS">
-                <Condition Enabled="true" Grouping="And">
-                  <ConditionSingle Enabled="true" ExpressionL="${data6}" ExpressionTypeL="String" ExpressionR="04CC" ExpressionTypeR="String" ConditionType="StringEqualCase" />
-                  <ConditionSingle Enabled="true" ExpressionL="${lvar:_P2_1_List.size}" ExpressionTypeL="Numeric" ExpressionR="2" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
-                </Condition>
-              </Action>
-              <Action OrderNumber="11" UseTTSTextExpression="钢铁" Enabled="False" ActionType="UseTTS">
-                <Condition Enabled="true" Grouping="And">
-                  <ConditionSingle Enabled="true" ExpressionL="${data6}" ExpressionTypeL="String" ExpressionR="2804B1" ExpressionTypeR="String" ConditionType="StringEqualCase" />
-                  <ConditionSingle Enabled="true" ExpressionL="${lvar:_P2_1_List.size}" ExpressionTypeL="Numeric" ExpressionR="2" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
-                </Condition>
-              </Action>
-              <Action OrderNumber="11" UseTTSTextExpression="辣翅" Enabled="False" ActionType="UseTTS" ExecutionDelayExpression="20">
-                <Condition Enabled="true" Grouping="And">
-                  <ConditionSingle Enabled="true" ExpressionL="${data6}" ExpressionTypeL="String" ExpressionR="04CC" ExpressionTypeR="String" ConditionType="StringEqualCase" />
-                </Condition>
-              </Action>
-              <Action OrderNumber="13" UseTTSTextExpression="十字" Enabled="False" ActionType="UseTTS" ExecutionDelayExpression="10">
-                <Condition Enabled="true" Grouping="And">
-                  <ConditionSingle Enabled="true" ExpressionL="${data6}" ExpressionTypeL="String" ExpressionR="0767" ExpressionTypeR="String" ConditionType="StringEqualCase" />
-                </Condition>
-              </Action>
-            </Actions>
-            <Condition Enabled="true" Grouping="And">
-              <ConditionSingle Enabled="true" ExpressionL="${var:_P2_1}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
-            </Condition>
-          </Trigger>
-          <Trigger Enabled="true" Name="一运初始化" Id="b6ade308-0e3f-4c1c-a8df-3e762be03e55" RegularExpression="(?&lt;timestamp&gt;^.{14}) StartsCasting (?&lt;type&gt;14):(?&lt;sourceId&gt;[^:]*):(?&lt;source&gt;[^:]*):(7B3F):(?&lt;ability&gt;(?:[^:]|: )*?):(?&lt;targetId&gt;[^:]*):(?&lt;target&gt;[^:]*):(?&lt;castTime&gt;[^:]*):(?&lt;x&gt;[^:]*):(?&lt;y&gt;[^:]*):(?&lt;z&gt;[^:]*):(?&lt;heading&gt;[^:]*)(?:$|:)">
+          <Trigger Enabled="false" Name="一运初始化" Id="b6ade308-0e3f-4c1c-a8df-3e762be03e55" RegularExpression="(?&lt;timestamp&gt;^.{14}) StartsCasting (?&lt;type&gt;14):(?&lt;sourceId&gt;[^:]*):(?&lt;source&gt;[^:]*):(7B3F):(?&lt;ability&gt;(?:[^:]|: )*?):(?&lt;targetId&gt;[^:]*):(?&lt;target&gt;[^:]*):(?&lt;castTime&gt;[^:]*):(?&lt;x&gt;[^:]*):(?&lt;y&gt;[^:]*):(?&lt;z&gt;[^:]*):(?&lt;heading&gt;[^:]*)(?:$|:)">
             <Actions>
               <Action OrderNumber="1" ListVariableName="_P2_1_List" VariableOp="SetNumeric" VariableName="_P2_1" VariableExpression="1" ActionType="ListVariable">
                 <Condition Enabled="false" Grouping="Or" />
@@ -267,7 +495,7 @@
             </Actions>
             <Condition Enabled="false" Grouping="Or" />
           </Trigger>
-          <Trigger Enabled="true" Name="一运结束" Id="433acd76-1943-4bab-9cc2-d00d1ec81b69" RegularExpression="">
+          <Trigger Enabled="false" Name="一运结束" Id="433acd76-1943-4bab-9cc2-d00d1ec81b69" RegularExpression="">
             <Actions>
               <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="_P2_1" VariableExpression="0" ActionType="Variable">
                 <Condition Enabled="false" Grouping="Or" />
@@ -278,7 +506,7 @@
             </Actions>
             <Condition Enabled="false" Grouping="Or" />
           </Trigger>
-          <Trigger Enabled="true" Name="一运组合技" Id="7be8bd95-555f-427c-b3f0-25a3cc3b95b0" RegularExpression="(?&lt;timestamp&gt;^.{14}) StatusList (?&lt;type&gt;26):(?&lt;targetId&gt;[^:]*):(Omega):(?&lt;jobLevelData&gt;[^:]*):(?&lt;hp&gt;[^:]*):(?&lt;maxHp&gt;[^:]*):(?&lt;mp&gt;[^:]*):(?&lt;maxMp&gt;[^:]*)(?::[^:]*){2}:(?&lt;x&gt;[^:]*):(?&lt;y&gt;[^:]*):(?&lt;z&gt;[^:]*):(?&lt;heading&gt;[^:]*):(?&lt;data0&gt;[^:]*):(?&lt;data1&gt;[^:]*):(?&lt;data2&gt;[^:]*):(?&lt;data3&gt;[^:]*):(?&lt;data4&gt;[^:]*):(E0000000):(?&lt;data6&gt;[^:]*)">
+          <Trigger Enabled="false" Name="一运组合技" Id="7be8bd95-555f-427c-b3f0-25a3cc3b95b0" RegularExpression="(?&lt;timestamp&gt;^.{14}) StatusList (?&lt;type&gt;26):(?&lt;targetId&gt;[^:]*):(Omega):(?&lt;jobLevelData&gt;[^:]*):(?&lt;hp&gt;[^:]*):(?&lt;maxHp&gt;[^:]*):(?&lt;mp&gt;[^:]*):(?&lt;maxMp&gt;[^:]*)(?::[^:]*){2}:(?&lt;x&gt;[^:]*):(?&lt;y&gt;[^:]*):(?&lt;z&gt;[^:]*):(?&lt;heading&gt;[^:]*):(?&lt;data0&gt;[^:]*):(?&lt;data1&gt;[^:]*):(?&lt;data2&gt;[^:]*):(?&lt;data3&gt;[^:]*):(?&lt;data4&gt;[^:]*):(E0000000):(?&lt;data6&gt;[^:]*)">
             <Actions>
               <Action OrderNumber="1" ListVariableOp="Push" ListVariableName="_P2_1_List" ListVariableExpression="钢铁" ActionType="ListVariable">
                 <Condition Enabled="true" Grouping="And">
@@ -319,7 +547,59 @@
             <Condition Enabled="true" Grouping="And">
               <ConditionSingle Enabled="true" ExpressionL="${var:_P2_1}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
             </Condition>
-            <Conditions />
+          </Trigger>
+          <Trigger Enabled="true" Source="FFXIVNetwork" Name="互换位的OMG" Id="857a7f85-ced2-4f35-9728-a778c8ecce7a" RegularExpression="^(?&lt;type&gt;2[12])\|(?&lt;timestamp&gt;[^|]*)\|(?&lt;sourceId&gt;[^|]*)\|(?&lt;source&gt;[^|]*)\|(7B1C)\|(?&lt;ability&gt;[^|]*)\|(?&lt;targetId&gt;[^|]*)\|(?&lt;target&gt;[^|]*)\|(?&lt;flags&gt;[^|]*)\|(?&lt;damage&gt;[^|]*)\|(?:[^|]*\|){14}(?&lt;targetCurrentHp&gt;[^|]*)\|(?&lt;targetMaxHp&gt;[^|]*)\|(?&lt;targetCurrentMp&gt;[^|]*)\|(?&lt;targetMaxMp&gt;[^|]*)\|(?:[^|]*\|){2}(?&lt;targetX&gt;[^|]*)\|(?&lt;targetY&gt;[^|]*)\|(?&lt;targetZ&gt;[^|]*)\|(?&lt;targetHeading&gt;[^|]*)\|(?&lt;currentHp&gt;[^|]*)\|(?&lt;maxHp&gt;[^|]*)\|(?&lt;currentMp&gt;[^|]*)\|(?&lt;maxMp&gt;[^|]*)\|(?:[^|]*\|){2}(?&lt;x&gt;[^|]*)\|(?&lt;y&gt;[^|]*)\|(?&lt;z&gt;[^|]*)\|(?&lt;heading&gt;[^|]*)\|(?&lt;sequence&gt;[^|]*)\|(?&lt;targetIndex&gt;[^|]*)\|(?&lt;targetCount&gt;[^|]*)\|">
+            <Actions>
+              <Action OrderNumber="1" UseTTSTextExpression="A点A点" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="87.00" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" UseTTSTextExpression="1点1点" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                  <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" UseTTSTextExpression="B点B点" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="113.00" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="4" UseTTSTextExpression="2点2点" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                  <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="5" UseTTSTextExpression="C点C点" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="113.00" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="6" UseTTSTextExpression="3点3点" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                  <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="7" UseTTSTextExpression="D点D点" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="87.00" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="8" UseTTSTextExpression="4点4点" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                  <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
           </Trigger>
         </Triggers>
       </Folder>
@@ -1727,6 +2007,220 @@
               <Action OrderNumber="135" LogMessageText="[14:14:18.028] ActionEffect 15:10264D9A:Yogurt Sothoth:409E:Recitation:10264D9A:Yogurt Sothoth:E:7680000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:75234:75234:7661:10000:::97.43:100.88:0.00:1.88:75234:75234:7661:10000:::97.43:100.88:0.00:1.88:000012B1:0:1" LogProcess="True" ActionType="LogMessage" ExecutionDelayExpression="0.0 * 1000" />
               <Action OrderNumber="136" LogMessageText="[14:14:18.028] StatusList 26:10264D9A:Yogurt Sothoth:005A5A1C:75234:75234:7661:10000:0::97.43:100.88:0.00:1.88:0:0:0:0F0168:41F00000:E0000000:28016C:41F00000:E0000000:294E0030:45090640:10264D9A:020130:0:10264D9A:08A8:409BB645:10336A41:0A96:40EED920:10264D9A:0768:C1700000:10264D9A:0:0:0:0:0:0:0A8F:40A5A150:10320AC7:0:0:0:0DAB:0:E0000000" LogProcess="True" ActionType="LogMessage" ExecutionDelayExpression="0.0 * 1000" />
               <Action OrderNumber="137" LogMessageText="[14:14:18.028] StatusAdd 1A:768:Recitation:15.00:10264D9A:Yogurt Sothoth:10264D9A:Yogurt Sothoth:00:75234:75234" LogProcess="True" ActionType="LogMessage" ExecutionDelayExpression="0.0 * 1000" />
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="eac9e47b-5b86-42e4-8d5f-f963fbf9e419" Name="P2.5" Enabled="false">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Source="FFXIVNetwork" Sequential="True" Name="High-powered Sniper Cannon分摊" Id="a7ba034a-d63d-41c3-a135-ab8522743b67" RegularExpression="^26\|[^|]*\|D62\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|(?&lt;name&gt;[^|]*)\|" Description="3.将点分摊的人记录到list中">
+            <Actions>
+              <Action OrderNumber="1" LogMessageText="MarkingStackTarget|${name}" LogProcess="True" ActionType="LogMessage">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" UseTTSTextExpression="分摊" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" UseTTSTextExpression="${name}" VariableOp="SetNumeric" VariableName="SelfBuff" VariableExpression="1" ActionType="Variable">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="4" ListVariableOp="Push" ListVariableName="StackList" ListVariableExpression="${name}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="5" VariableOp="SetNumeric" VariableName="StackNum" VariableExpression="${var:StackNum}+1" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="6" LogMessageText="MarkingNoBuffTarget" LogProcess="True" ActionType="LogMessage" Description="两个都有这个判断，因为不确定谁会先出现buff，但总有最后一个出现的时候全部的条件达成">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:SpreadList.size}" ExpressionTypeL="Numeric" ExpressionR="4" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:StackList.size}" ExpressionTypeL="Numeric" ExpressionR="2" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="false" Source="FFXIVNetwork" Sequential="True" Name="测试" Id="86af5489-50d6-4b03-8403-3e0172915dde" RegularExpression="^26\|[^|]*\|A2E\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|(?&lt;name&gt;[^|]*)\|">
+            <Actions>
+              <Action OrderNumber="1" ListVariableOp="Push" ListVariableName="StackList" ListVariableExpression="${name}" ActionType="ListVariable">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:StackList.size}" ExpressionTypeL="Numeric" ExpressionR="2" ExpressionTypeR="String" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" LogMessageText="MarkingNoBuffTarget" LogProcess="True" ActionType="LogMessage" Description="两个都有这个判断，因为不确定谁会先出现buff，但总有最后一个出现的时候全部的条件达成">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:SpreadList.size}" ExpressionTypeL="Numeric" ExpressionR="4" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:StackList.size}" ExpressionTypeL="Numeric" ExpressionR="2" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" UseTTSTextExpression="${name}" VariableOp="SetNumeric" VariableName="SelfBuff" VariableExpression="1" ActionType="Variable">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="4" LogMessageText="MarkingStackTarget|${name}" LogProcess="True" ActionType="LogMessage">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="5" VariableOp="SetNumeric" VariableName="SpreadNum" VariableExpression="${var:SpreadNum}+1" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="6" TriggerId="7ffa8084-6c0c-4d09-afb3-85348e322a13" TriggerForce="regexp,conditions" Enabled="False" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="7" UseTTSTextExpression="${name}" Enabled="False" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="And" />
+          </Trigger>
+          <Trigger Enabled="true" Name="PlayerMarker" Id="6606a349-49bc-477e-93a3-df503aaa8584" RegularExpression="(?&lt;timestamp&gt;^.{14}) SignMarker (?&lt;type&gt;1D):Add:(?&lt;waymark&gt;[^:]*):(?&lt;id&gt;[^:]*):(?&lt;name&gt;[^:]*):(?&lt;targetId&gt;[^:]*):(?&lt;targetName&gt;[^:]*)(?:$|:)" Description="1.将已经被标记的玩家加入被标记的list&#xD;&#xA;2.发出全局通知MarkedListUpdated">
+            <Actions>
+              <Action OrderNumber="1" ListVariableOp="Push" ListVariableName="MarkedList" ListVariableExpression="${targetName}" ActionType="ListVariable">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:MarkedList.size}" ExpressionTypeL="Numeric" ExpressionR="6" ExpressionTypeR="String" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" LogMessageText="MarkedListUpdated" LogProcess="True" ActionType="LogMessage">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:MarkedList.size}" ExpressionTypeL="Numeric" ExpressionR="6" ExpressionTypeR="String" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" NamedCallbackName="command" NamedCallbackParam="/mk ignore &lt;me&gt;" Enabled="False" ActionType="NamedCallback">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:StackList.size}" ExpressionTypeL="Numeric" ExpressionR="2" ExpressionTypeR="String" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="4" Enabled="False" ActionType="SystemBeep">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:StackList.size}" ExpressionTypeL="Numeric" ExpressionR="2" ExpressionTypeR="String" ConditionType="NumericLess" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="5" UseTTSTextExpression="${targetName}" Enabled="False" ActionType="UseTTS">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Source="FFXIVNetwork" Sequential="True" Name="Sniper Cannon分散" Id="63b4381c-a350-41d6-8e68-ad2d3893ca0d" RegularExpression="^26\|[^|]*\|D61\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|(?&lt;name&gt;[^|]*)\|" Description="1.发送自定义log&#xD;&#xA;2.报分散&#xD;&#xA;3.设置自己为分散变量&#xD;&#xA;4.将自己的名字压入SpreadList&#xD;&#xA;5.分散计数器+1">
+            <Actions>
+              <Action OrderNumber="0" UseTTSTextExpression="分散" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="1" LogMessageText="MarkingSpreadTarget|${name}" LogProcess="True" ActionType="LogMessage">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" UseTTSTextExpression="${name}" VariableOp="SetNumeric" VariableName="SelfBuff" VariableExpression="0" ActionType="Variable">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" ListVariableOp="Push" ListVariableName="SpreadList" ListVariableExpression="${name}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="5" VariableOp="SetNumeric" VariableName="SpreadNum" VariableExpression="${var:SpreadNum}+1" ActionType="Variable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="6" LogMessageText="MarkingNoBuffTarget" LogProcess="True" ActionType="LogMessage" Description="两个都有这个判断，因为不确定谁会先出现buff，但总有最后一个出现的时候全部的条件达成">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:SpreadList.size}" ExpressionTypeL="Numeric" ExpressionR="4" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:StackList.size}" ExpressionTypeL="Numeric" ExpressionR="2" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+        </Triggers>
+      </Folder>
+      <Folder Id="7ffd0a3b-f44b-4d34-93e1-bb6dac722653" Name="小队优先级初始化" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Name="初始化小队列表" Id="ecb499b6-5fc6-4d5e-82ec-35403eb8b855" RegularExpression="init">
+            <Actions>
+              <Action OrderNumber="1" TriggerId="9185e1cc-896f-4931-bd67-abd27c8dd5cb" TriggerForce="regexp,conditions" ActionType="Trigger">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Source="FFXIVNetwork" Sequential="True" Name="获取小队队员名称和职业" Id="9185e1cc-896f-4931-bd67-abd27c8dd5cb" RegularExpression="^(?&lt;type&gt;11)\|(?&lt;timestamp&gt;[^|]*)\|2\|(?&lt;Player1&gt;[^|]*)\|(?&lt;Player2&gt;[^|]*)\|(?&lt;Player3&gt;[^|]*)\|(?&lt;Player4&gt;[^|]*)\|(?&lt;Player5&gt;[^|]*)\|(?&lt;Player6&gt;[^|]*)\|(?&lt;Player7&gt;[^|]*)\|(?&lt;Player8&gt;[^|]*)\|">
+            <Actions>
+              <Action OrderNumber="1" UseTTSTextExpression="${_ffxivparty[3].name}" Enabled="False" ActionType="UseTTS">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" ListVariableName="PartyIDList" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="3" ListVariableName="PartyJobList" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="4" ListVariableOp="Push" ListVariableName="PartyJobList" ListVariableExpression="${_ffxivparty[1].job}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="5" ListVariableOp="Push" ListVariableName="PartyJobList" ListVariableExpression="${_ffxivparty[2].job}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="6" ListVariableOp="Push" ListVariableName="PartyJobList" ListVariableExpression="${_ffxivparty[3].job}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="7" ListVariableOp="Push" ListVariableName="PartyJobList" ListVariableExpression="${_ffxivparty[4].job}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="8" ListVariableOp="Push" ListVariableName="PartyJobList" ListVariableExpression="${_ffxivparty[5].job}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="9" ListVariableOp="Push" ListVariableName="PartyJobList" ListVariableExpression="${_ffxivparty[6].job}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="10" ListVariableOp="Push" ListVariableName="PartyJobList" ListVariableExpression="${_ffxivparty[7].job}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="11" ListVariableOp="Push" ListVariableName="PartyJobList" ListVariableExpression="${_ffxivparty[8].job}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="12" ListVariableOp="Push" ListVariableName="PartyIDList" ListVariableExpression="${_ffxivparty[1].name}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="13" ListVariableOp="Push" ListVariableName="PartyIDList" ListVariableExpression="${_ffxivparty[2].name}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="14" ListVariableOp="Push" ListVariableName="PartyIDList" ListVariableExpression="${_ffxivparty[3].name}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="15" ListVariableOp="Push" ListVariableName="PartyIDList" ListVariableExpression="${_ffxivparty[4].name}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="16" ListVariableOp="Push" ListVariableName="PartyIDList" ListVariableExpression="${_ffxivparty[5].name}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="17" ListVariableOp="Push" ListVariableName="PartyIDList" ListVariableExpression="${_ffxivparty[6].name}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="18" ListVariableOp="Push" ListVariableName="PartyIDList" ListVariableExpression="${_ffxivparty[7].name}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="19" ListVariableOp="Push" ListVariableName="PartyIDList" ListVariableExpression="${_ffxivparty[8].name}" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="20" UseTTSTextExpression="初始化完成" Enabled="False" ActionType="UseTTS">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Name="小队职业" Id="a3676fa9-3a1f-4e01-9799-4a6ff28e4516" RegularExpression="">
+            <Actions>
+              <Action OrderNumber="1" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
             </Actions>
             <Condition Enabled="false" Grouping="Or" />
           </Trigger>
