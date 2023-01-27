@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedTrigger Enabled="true" Source="FFXIVNetwork" Name="Phase 2 - Before knock back by Omega-F in mid and quickly find a new 12'o clock position (Tested)" Id="4b64191b-aa6c-4523-9602-7284eb11af7b" RegularExpression="^(?&lt;type&gt;2[12])\|(?&lt;timestamp&gt;[^|]*)\|(?&lt;sourceId&gt;[^|]*)\|(?&lt;source&gt;[^|]*)\|(7B1C)\|(?&lt;ability&gt;[^|]*)\|(?&lt;targetId&gt;[^|]*)\|(?&lt;target&gt;[^|]*)\|(?&lt;flags&gt;[^|]*)\|(?&lt;damage&gt;[^|]*)\|(?:[^|]*\|){14}(?&lt;targetCurrentHp&gt;[^|]*)\|(?&lt;targetMaxHp&gt;[^|]*)\|(?&lt;targetCurrentMp&gt;[^|]*)\|(?&lt;targetMaxMp&gt;[^|]*)\|(?:[^|]*\|){2}(?&lt;targetX&gt;[^|]*)\|(?&lt;targetY&gt;[^|]*)\|(?&lt;targetZ&gt;[^|]*)\|(?&lt;targetHeading&gt;[^|]*)\|(?&lt;currentHp&gt;[^|]*)\|(?&lt;maxHp&gt;[^|]*)\|(?&lt;currentMp&gt;[^|]*)\|(?&lt;maxMp&gt;[^|]*)\|(?:[^|]*\|){2}(?&lt;x&gt;[^|]*)\|(?&lt;y&gt;[^|]*)\|(?&lt;z&gt;[^|]*)\|(?&lt;heading&gt;[^|]*)\|(?&lt;sequence&gt;[^|]*)\|(?&lt;targetIndex&gt;[^|]*)\|(?&lt;targetCount&gt;[^|]*)\|">
+    <Actions>
+      <Action OrderNumber="1" UseTTSTextExpression="A" ActionType="UseTTS">
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+          <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="87.00" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+        </Condition>
+      </Action>
+      <Action OrderNumber="2" UseTTSTextExpression="1" ActionType="UseTTS">
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+          <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+        </Condition>
+      </Action>
+      <Action OrderNumber="3" UseTTSTextExpression="B" ActionType="UseTTS">
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="113.00" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+          <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+        </Condition>
+      </Action>
+      <Action OrderNumber="4" UseTTSTextExpression="2" ActionType="UseTTS">
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+          <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+        </Condition>
+      </Action>
+      <Action OrderNumber="5" UseTTSTextExpression="C" ActionType="UseTTS">
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+          <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="113.00" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+        </Condition>
+      </Action>
+      <Action OrderNumber="6" UseTTSTextExpression="3" ActionType="UseTTS">
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+          <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+        </Condition>
+      </Action>
+      <Action OrderNumber="7" UseTTSTextExpression="D" ActionType="UseTTS">
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="87.00" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+          <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+        </Condition>
+      </Action>
+      <Action OrderNumber="8" UseTTSTextExpression="4" ActionType="UseTTS">
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+          <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100.00" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+        </Condition>
+      </Action>
+    </Actions>
+    <Condition Enabled="false" Grouping="Or" />
+    <Conditions />
+  </ExportedTrigger>
+</TriggernometryExport>
