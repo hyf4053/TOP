@@ -158,15 +158,15 @@ if(P3MarkList!=null && P3MarkList.Size() == 3){
                 {
                     if(counter==0)
                     {
-                        TriggernometryHelpers.PlayTTS("左刀去1点向A放");
+                        TriggernometryHelpers.PlayTTS("左刀去1点朝向Boy");
                     }
                     else if(counter==1)
                     {
-                        TriggernometryHelpers.PlayTTS("左刀去2点向C放");
+                        TriggernometryHelpers.PlayTTS("左刀去2点朝向Dog");
                     }
                     else if(counter==2)
                     {
-                        TriggernometryHelpers.PlayTTS("左刀去3点向D放");
+                        TriggernometryHelpers.PlayTTS("左刀去3点朝向A");
                     }
                     
                 }
@@ -174,15 +174,15 @@ if(P3MarkList!=null && P3MarkList.Size() == 3){
                 {
                     if(counter==0)
                     {
-                        TriggernometryHelpers.PlayTTS("右刀去1点向A放");
+                        TriggernometryHelpers.PlayTTS("右刀去1点朝向Dog");
                     }
                     else if(counter==1)
                     {
-                        TriggernometryHelpers.PlayTTS("右刀去2点向C放");
+                        TriggernometryHelpers.PlayTTS("右刀去2点朝向Boy");
                     }
                     else if(counter==2)
                     {
-                        TriggernometryHelpers.PlayTTS("右刀去3点向D放");
+                        TriggernometryHelpers.PlayTTS("右刀去3点朝向C");
                     }
                 }
             }
@@ -222,15 +222,15 @@ if(P3MarkList!=null && P3MarkList.Size() == 3){
                 {
                     if(counter==0)
                     {
-                        TriggernometryHelpers.PlayTTS("左刀去3点向C放");
+                        TriggernometryHelpers.PlayTTS("左刀去3点朝向Dog");
                     }
                     else if(counter==1)
                     {
-                        TriggernometryHelpers.PlayTTS("左刀去4点向A放");
+                        TriggernometryHelpers.PlayTTS("左刀去4点朝向Boy");
                     }
                     else if(counter==2)
                     {
-                        TriggernometryHelpers.PlayTTS("左刀去1点向B放");
+                        TriggernometryHelpers.PlayTTS("左刀去1点朝向C");
                     }
                     
                 }
@@ -238,15 +238,15 @@ if(P3MarkList!=null && P3MarkList.Size() == 3){
                 {
                     if(counter==0)
                     {
-                        TriggernometryHelpers.PlayTTS("右刀去3点向C放");
+                        TriggernometryHelpers.PlayTTS("右刀去3点朝向Boy");
                     }
                     else if(counter==1)
                     {
-                        TriggernometryHelpers.PlayTTS("右刀去4点向A放");
+                        TriggernometryHelpers.PlayTTS("右刀去4点朝向Dog");
                     }
                     else if(counter==2)
                     {
-                        TriggernometryHelpers.PlayTTS("右刀去1点向B放");
+                        TriggernometryHelpers.PlayTTS("右刀去1点朝向A");
                     }
                 }
                 
