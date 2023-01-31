@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedFolder Id="45a6db0b-02bf-44bb-b43f-b3b37f818b52" Name="探测式波动炮" Enabled="true">
+    <Folders />
+    <Triggers>
+      <Trigger Enabled="true" Name="探测式波动炮B" Id="bde3d291-98b2-46d5-ade8-311237bdee1a" RegularExpression="(?&lt;timestamp&gt;^.{14}) StartsCasting (?&lt;type&gt;14):(?&lt;sourceId&gt;[^:]*):(?&lt;source&gt;[^:]*):7B6B:(?&lt;ability&gt;(?:[^:]|: )*?):(?&lt;targetId&gt;[^:]*):(?&lt;target&gt;[^:]*):(?&lt;castTime&gt;[^:]*):(?&lt;x&gt;[^:]*):(?&lt;y&gt;[^:]*):(?&lt;z&gt;[^:]*):(?&lt;heading&gt;[^:]*)(?:$|:)">
+        <Actions>
+          <Action OrderNumber="1" UseTTSTextExpression="波点12点" ActionType="UseTTS">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+      <Trigger Enabled="true" Name="探测式波动炮D" Id="dcea2ce5-43c1-4337-9587-284318e714f3" RegularExpression="(?&lt;timestamp&gt;^.{14}) StartsCasting (?&lt;type&gt;14):(?&lt;sourceId&gt;[^:]*):(?&lt;source&gt;[^:]*):7B6C:(?&lt;ability&gt;(?:[^:]|: )*?):(?&lt;targetId&gt;[^:]*):(?&lt;target&gt;[^:]*):(?&lt;castTime&gt;[^:]*):(?&lt;x&gt;[^:]*):(?&lt;y&gt;[^:]*):(?&lt;z&gt;[^:]*):(?&lt;heading&gt;[^:]*)(?:$|:)">
+        <Actions>
+          <Action OrderNumber="1" UseTTSTextExpression="得点12点" ActionType="UseTTS">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+    </Triggers>
+  </ExportedFolder>
+</TriggernometryExport>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedFolder Id="84f68a94-a9eb-462e-b422-6bcbb5e178c7" Name="点名左右刀" Enabled="true">
+    <Folders />
+    <Triggers>
+      <Trigger Enabled="true" Name="点名左刀" Id="99414be6-cc36-423a-8660-05f08d316ec3" RegularExpression="(?&lt;timestamp&gt;^.{14}) StatusAdd (?&lt;type&gt;1A):D7D:(?&lt;effect&gt;(?:[^:]|: )*?):(?&lt;duration&gt;[^:]*):(?&lt;sourceId&gt;[^:]*):(?&lt;source&gt;[^:]*):(?&lt;targetId&gt;[^:]*):(?&lt;target&gt;[^:]*):(?&lt;count&gt;[^:]*):(?&lt;targetMaxHp&gt;[^:]*):(?&lt;sourceMaxHp&gt;[^:]*)(?:$|:)">
+        <Actions>
+          <Action OrderNumber="1" UseTTSTextExpression="点名左刀" ActionType="UseTTS">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="true" Grouping="And">
+          <ConditionSingle Enabled="true" ExpressionL="${target}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+        </Condition>
+        <Conditions />
+      </Trigger>
+      <Trigger Enabled="true" Name="点名右刀" Id="37b06f77-4b84-41e8-ae83-067882b9017a" RegularExpression="(?&lt;timestamp&gt;^.{14}) StatusAdd (?&lt;type&gt;1A):D7C:(?&lt;effect&gt;(?:[^:]|: )*?):(?&lt;duration&gt;[^:]*):(?&lt;sourceId&gt;[^:]*):(?&lt;source&gt;[^:]*):(?&lt;targetId&gt;[^:]*):(?&lt;target&gt;[^:]*):(?&lt;count&gt;[^:]*):(?&lt;targetMaxHp&gt;[^:]*):(?&lt;sourceMaxHp&gt;[^:]*)(?:$|:)">
+        <Actions>
+          <Action OrderNumber="1" UseTTSTextExpression="点名右刀" ActionType="UseTTS">
+            <Condition Enabled="true" Grouping="And">
+              <ConditionSingle Enabled="true" ExpressionL="${target}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+            </Condition>
+          </Action>
+        </Actions>
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+    </Triggers>
+  </ExportedFolder>
+</TriggernometryExport>

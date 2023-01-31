@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedFolder Id="7792d18c-8f56-4ba7-a39c-85558eef510d" Name="Oversampled Wave Cannon Loading" Enabled="true">
+    <Folders />
+    <Triggers>
+      <Trigger Enabled="true" Name="Left" Id="6d8aa41e-5126-4a94-865d-9284b5e53a6a" RegularExpression="(?&lt;timestamp&gt;^.{14}) StatusAdd (?&lt;type&gt;1A):D7D:(?&lt;effect&gt;(?:[^:]|: )*?):(?&lt;duration&gt;[^:]*):(?&lt;sourceId&gt;[^:]*):(?&lt;source&gt;[^:]*):(?&lt;targetId&gt;[^:]*):(?&lt;target&gt;[^:]*):(?&lt;count&gt;[^:]*):(?&lt;targetMaxHp&gt;[^:]*):(?&lt;sourceMaxHp&gt;[^:]*)(?:$|:)">
+        <Actions>
+          <Action OrderNumber="1" UseTTSTextExpression="Left" ActionType="UseTTS">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+      <Trigger Enabled="true" Name="Right" Id="6eef5bbb-2db9-46ad-bb72-4baef9ea4d8a" RegularExpression="(?&lt;timestamp&gt;^.{14}) StatusAdd (?&lt;type&gt;1A):D7C:(?&lt;effect&gt;(?:[^:]|: )*?):(?&lt;duration&gt;[^:]*):(?&lt;sourceId&gt;[^:]*):(?&lt;source&gt;[^:]*):(?&lt;targetId&gt;[^:]*):(?&lt;target&gt;[^:]*):(?&lt;count&gt;[^:]*):(?&lt;targetMaxHp&gt;[^:]*):(?&lt;sourceMaxHp&gt;[^:]*)(?:$|:)">
+        <Actions>
+          <Action OrderNumber="1" UseTTSTextExpression="Right" ActionType="UseTTS">
+            <Condition Enabled="false" Grouping="Or" />
+          </Action>
+        </Actions>
+        <Condition Enabled="false" Grouping="Or" />
+        <Conditions />
+      </Trigger>
+    </Triggers>
+  </ExportedFolder>
+</TriggernometryExport>
